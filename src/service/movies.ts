@@ -13,7 +13,3 @@ export const getHorrorMovies = async () => {
     .get('/discover/movie', { params: { with_genres: 27 } })
     .then(res => res.data.results);
 };
-
-export const getTopRatedMovies = async () => {
-  return httpClient.get('/movie/top_rated').then(res => res.data.results);
-};
