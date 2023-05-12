@@ -41,12 +41,13 @@ height: 45px;
 flex-direction: row;
 justify-content: space-between;
 align-items: center;
-margin-top: 11px;
+margin-top: 20px;
 `;
 
 const Text = styled.div`
 font-size: 13.64px;
 weight: 400;
+margin-top:3px;
 `;
 
 const PlayButton = styled.div`
