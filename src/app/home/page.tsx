@@ -24,8 +24,9 @@ flex-direction: column;
 `;
 
 const Image = styled.img`
+object-fit: cover;
 height: 415px;
-width: 424.05px;
+width: 375px;
 `;
 
 const Bars = styled.div`
@@ -35,7 +36,7 @@ justify-content: center;
 
 const Bar = styled.div`
 display: flex;
-width: 250px;
+width: 247px;
 flex-direction: row;
 justify-content: space-between;
 align-items: center;
