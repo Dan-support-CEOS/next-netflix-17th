@@ -10,6 +10,7 @@ import { getAnimations, getTopRatedTvShows } from '../../service/tvshows';
 import { IMovie, ITvShow } from '@/interface/interface';
 import styled from 'styled-components';
 import Footer from '../component/Footer';
+import Header from '../component/Header';
 
 const Wrapper = styled.ul`
 display: flex;
@@ -25,6 +26,7 @@ flex-direction: column;
 `;
 
 const Image = styled.img`
+position: relative;
 object-fit: cover;
 height: 415px;
 width: 375px;
@@ -94,12 +96,13 @@ export default function HomePage() {
   );
   
  if(nowPlayingMovies && nowPlayingMovies!){
-    const random = Math.floor(Math.random() * nowPlayingMovies.length);
+    const random = Number([Math.floor(Math.random() * nowPlayingMovies.length)]);
  
     return (
     <Wrapper>
      <Content>
         <Image src={`https://image.tmdb.org/t/p/original${nowPlayingMovies[random].poster_path}`}/>
+        <Header/>
         <Bars>
         <Bar>
         <PlusButton>
