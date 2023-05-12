@@ -9,6 +9,7 @@ import {
 import { getAnimations, getTopRatedTvShows } from '../../service/tvshows';
 import { IMovie, ITvShow } from '@/interface/interface';
 import styled from 'styled-components';
+import Footer from '../component/Footer';
 
 const Wrapper = styled.ul`
 display: flex;
@@ -144,6 +145,7 @@ export default function HomePage() {
         </InfoButton>
         </Bar>
         </Bars>
+        <Footer/>
       </Content>
     </Wrapper>
   );
