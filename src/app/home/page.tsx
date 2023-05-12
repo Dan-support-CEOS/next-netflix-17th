@@ -36,7 +36,8 @@ justify-content: center;
 
 const Bar = styled.div`
 display: flex;
-width: 260px;
+width: 259px;
+height: 45px;
 flex-direction: row;
 justify-content: space-between;
 align-items: center;
