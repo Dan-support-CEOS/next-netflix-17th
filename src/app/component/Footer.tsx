@@ -7,6 +7,8 @@ import {BsList} from 'react-icons/bs';
 
 const Wrapper = styled.div`
 display: flex;
+position: fixed;
+bottom:0;
 justify-content: center;
 width: 375px;
 height: 48px;
