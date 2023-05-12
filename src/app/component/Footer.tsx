@@ -25,10 +25,10 @@ const Content = styled.div`
 display:flex;
 flex-direction: column;
 align-items: center;
-cursor: pointer;
-:hover(
-    color: black;
-)
+:hover{
+    color: white;
+    cursor: pointer;
+}
 `;
 
 const Text = styled.div`
