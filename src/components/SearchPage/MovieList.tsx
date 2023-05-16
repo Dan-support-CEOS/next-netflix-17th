@@ -15,7 +15,7 @@ export default function MovieList({ videos }: MovieListProps) {
           <VideoBox key={video.id}>
             <VideoImg
               key={video.id}
-              src={`https://image.tmdb.org/t/p/original${video.poster_path}`}
+              src={`https://image.tmdb.org/t/p/original${video.backdrop_path}`}
               alt="videoImg"
             />
             <VideoTitle>{video.title}</VideoTitle>
