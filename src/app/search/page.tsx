@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { getNowPlayingMovies, searchMovies } from '../../service/movies';
 import { IMovie } from '@/interface/interface';
+import MovieList from '@/components/SearchPage/MovieList';
 import Footer from '../../components/Footer';
 import styled from 'styled-components';
 
@@ -29,15 +30,11 @@ export default function HomePage() {
         onChange={e => setSearchText(e.target.value)}
       />
 
+      <TiTle>Top Searches</TiTle>
       {!searchText ? (
-        <ul>
-          {nowPlayingMovies &&
-            nowPlayingMovies.map(video => <p>{video.title}</p>)}
-        </ul>
+        <MovieList videos={nowPlayingMovies} />
       ) : (
-        <ul>
-          {searchedMovies && searchedMovies.map(video => <p>{video.title}</p>)}
-        </ul>
+        <MovieList videos={searchedMovies} />
       )}
 
       <Footer />
@@ -47,5 +44,10 @@ export default function HomePage() {
 
 const SearchPageBox = styled.div`
   width: 375px;
-  background-color: white;
+`;
+
+const TiTle = styled.h2`
+  color: white;
+  font-size: 26.75px;
+  font-weight: 700;
 `;
