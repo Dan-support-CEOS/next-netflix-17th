@@ -14,6 +14,7 @@ import MovieList from '../../components/HomePage/MovieList';
 import TvShowList from '../../components/HomePage/TvShowList';
 import Footer from '../../components/Footer';
 import styled from 'styled-components';
+import Link from 'next/link';
 
 const HomePageBox = styled.div`
   width: 375px;
@@ -47,19 +48,21 @@ export default function HomePage() {
     getTopRatedTvShows,
   );
 
+  if(nowPlayingMovies && nowPlayingMovies!){
+    const index = Math.floor(Math.random() * nowPlayingMovies.length);
+
   return (
     <HomePageBox>
       <Header />
-      {nowPlayingMovies && nowPlayingMovies! && (
+         <Link href={{pathname: `/detail/${nowPlayingMovies[index].id}`, query: {title: nowPlayingMovies[index].title, backdrop: nowPlayingMovies[index].backdrop_path, overview: nowPlayingMovies[index].overview}, }} 
+         as={`/detail/${nowPlayingMovies[index].id}`}>
         <Image
           src={`https://image.tmdb.org/t/p/original${
-            nowPlayingMovies[
-              Math.floor(Math.random() * nowPlayingMovies.length)
-            ].poster_path
+            nowPlayingMovies[index].poster_path
           }`}
           alt={'randomImg'}
         />
-      )}
+        </Link>
       <Bar />
 
       <MovieList title={'Previews'} videos={upcomingMovies} isCircle={true} />
@@ -80,3 +83,5 @@ export default function HomePage() {
     </HomePageBox>
   );
 }
+
+  }
