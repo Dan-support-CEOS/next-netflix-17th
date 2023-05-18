@@ -8,10 +8,19 @@ const DetailPageBox = styled.div`
   width: 375px;
 `;
 
+const ImageGradient = styled.div`
+  height: 415px;
+  width: 375px;
+  background: linear-gradient(transparent 10%, black);
+  position:absolute;
+  top:0;
+`;
+
 const Image = styled.img`
   object-fit: cover;
   height: 415px;
   width: 375px;
+  position: relative;
 `;
 
 const Button = styled.div`
@@ -29,8 +38,8 @@ const Text = styled.div`
 font-size: 26.75px;
 font-weight: 700;
 color: white;
-margin-top: 32px;
-margin-left: 32px;
+margin: 32px;
+margin-bottom:0;
 `;
 
 const SubText = styled.div`
@@ -39,6 +48,7 @@ font-weight: 400;
 color: white;
 margin-top: 24px;
 margin-left: 32px;
+margin-bottom: 60px;
 `;
 
 export default function DetailPage(){
@@ -49,6 +59,7 @@ export default function DetailPage(){
     return(
         <DetailPageBox>
             <Image src={`https://image.tmdb.org/t/p/original${backdropPath}`}/>
+            <ImageGradient/>
             <Button>
                 <PlayButton/>
             </Button>
