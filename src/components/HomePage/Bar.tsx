@@ -1,7 +1,7 @@
 import styled from 'styled-components';
-import Play from '../../assets/HomePlay.svg';
-import Plus from '../../assets/Plus.svg';
-import Info from '../../assets/Info.svg';
+import Play from '../../../public/assets/HomePlay.svg';
+import Plus from '../../../public/assets/Plus.svg';
+import Info from '../../../public/assets/Info.svg';
 
 const Bars = styled.div`
   width: 375px;

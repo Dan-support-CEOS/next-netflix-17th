@@ -1,6 +1,6 @@
 'use client'
 import styled from "styled-components";
-import PlayButton from '../../../assets/DetailPlay.svg';
+import PlayButton from '../../../../public/assets/DetailPlay.svg';
 import { useSearchParams } from "next/navigation";
 import Footer from "@/components/Footer";
 
