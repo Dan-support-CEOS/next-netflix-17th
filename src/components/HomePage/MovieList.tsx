@@ -17,8 +17,7 @@ export default function MovieList({ title, videos, isCircle }: MovieListProps) {
       <VideoListBox isCircle={isCircle}>
         {videos &&
           videos!.map(video => (
-            <Link href={{pathname: `/detail/${video.id}`, query: {title: video.title, backdrop: video.backdrop_path, overview: video.overview}, }} 
-            as={`/detail/${video.id}`}>
+            <Link href={{pathname: `/detail/${video.id}`, query: {backdrop: video.backdrop_path, overview: video.overview}, }}>
             <ImgBox key={video.id} isCircle={isCircle}>
               <VideoImg
                 src={`https://image.tmdb.org/t/p/original${video.poster_path}`}

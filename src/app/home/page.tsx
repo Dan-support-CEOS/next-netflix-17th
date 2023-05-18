@@ -54,8 +54,7 @@ export default function HomePage() {
   return (
     <HomePageBox>
       <Header />
-         <Link href={{pathname: `/detail/${nowPlayingMovies[index].id}`, query: {title: nowPlayingMovies[index].title, backdrop: nowPlayingMovies[index].backdrop_path, overview: nowPlayingMovies[index].overview}, }} 
-         as={`/detail/${nowPlayingMovies[index].id}`}>
+         <Link href={{pathname: `/detail/${nowPlayingMovies[index].id}`, query: {backdrop: nowPlayingMovies[index].backdrop_path, overview: nowPlayingMovies[index].overview}, }} >
         <Image
           src={`https://image.tmdb.org/t/p/original${
             nowPlayingMovies[index].poster_path
