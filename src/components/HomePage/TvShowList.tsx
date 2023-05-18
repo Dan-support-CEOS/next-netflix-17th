@@ -14,7 +14,7 @@ export default function TvShowList({ title, videos }: TvShowListProps) {
       <Title>{title}</Title>
       <VideoListBox>
         {videos &&
-          videos!.map(video => (
+          videos.map(video => (
             <ImgBox key={video.id}>
               <VideoImg
                 key={video.id}
