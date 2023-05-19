@@ -1,6 +1,6 @@
 'use client';
 
-import { useQuery } from '@tanstack/react-query';
+import { useQuery, dehydrate, Hydrate } from '@tanstack/react-query';
 import {
   getUpcomingMovies,
   getNowPlayingMovies,
@@ -14,6 +14,7 @@ import MovieList from '../../components/HomePage/MovieList';
 import TvShowList from '../../components/HomePage/TvShowList';
 import Footer from '../../components/Footer';
 import styled from 'styled-components';
+import getQueryClient from '../getQueryClient';
 
 const HomePageBox = styled.div`
   width: 375px;
@@ -80,3 +81,21 @@ export default function HomePage() {
     </HomePageBox>
   );
 }
+
+/*
+export async function HydratedHomePage() {
+  const queryClient = getQueryClient();
+  await queryClient.prefetchQuery(['upcomingMovies'], getUpcomingMovies);
+  await queryClient.prefetchQuery(['nowPlayingMovies'], getNowPlayingMovies);
+  await queryClient.prefetchQuery(['horrorMovies'], getHorrorMovies);
+  await queryClient.prefetchQuery(['animations'], getAnimations);
+  await queryClient.prefetchQuery(['topRatedTvShows'], getTopRatedTvShows);
+  const dehydratedState = dehydrate(queryClient);
+
+  return (
+    <Hydrate state={dehydratedState}>
+      <HomePage />
+    </Hydrate>
+  );
+}
+*/
