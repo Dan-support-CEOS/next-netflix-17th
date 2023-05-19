@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import Link from 'next/link';
-import {usePathname} from 'next/navigation';
+import { usePathname } from 'next/navigation';
 import Image from 'next/image';
 
 const Wrapper = styled.div`
@@ -27,78 +27,75 @@ const Text = styled.div<{ color?: string }>`
   font-size: 8.2px;
   font-weight: 500;
   margin-top: 1px;
-  color: ${(props) => props.color || "#878787"};
+  color: ${props => props.color || '#878787'};
 `;
 
 export default function Footer() {
-  const pathname  = usePathname();
-  
+  const pathname = usePathname();
+
   const menuData = [
     {
-      id:0,
+      id: 0,
       name: 'Home',
       link: '/home',
-      text: 'Home'
+      text: 'Home',
     },
     {
-      id:1,
+      id: 1,
       name: 'Search',
       link: '/search',
-      text: 'Search'
+      text: 'Search',
     },
     {
-      id:2,
+      id: 2,
       name: 'Soon',
       link: '',
-      text: 'Coming Soon'
+      text: 'Coming Soon',
     },
     {
-      id:3,
+      id: 3,
       name: 'Downloads',
       link: '',
-      text: 'Downloads'
+      text: 'Downloads',
     },
     {
-      id:4,
+      id: 4,
       name: 'More',
       link: '',
-      text: 'More'
-    }
+      text: 'More',
+    },
   ];
 
   return (
     <Wrapper>
       <>
-      {menuData.map((item,idx) => (
-        <Content>
-          <Link href = {item.link} key={idx}>
-            {pathname === item.link ? (
-              <>
-              <Image
-              src={`/assets/Footer/selected${item.name}.svg`}
-              alt='item'
-              width={20}
-              height={20}
-              key={idx}
-              />
-              <Text color='white' key={idx}>
-                {item.text}</Text>
-              </>
-            ):(
-              <>
-              <Image
-              src={`/assets/Footer/${item.name}.svg`}
-              alt='item'
-              width={20}
-              height={20}
-              key={idx}
-              />
-              <Text>{item.text}</Text>
-              </> 
-            )}
-          </Link>
-        </Content>
-      ))}
+        {menuData.map(item => (
+          <Content key={item.id}>
+            <Link href={item.link} key={item.id}>
+              {pathname === item.link ? (
+                <>
+                  <Image
+                    src={`/assets/Footer/selected${item.name}.svg`}
+                    alt="item"
+                    width={20}
+                    height={20}
+                  />
+                  <Text color="white">{item.text}</Text>
+                </>
+              ) : (
+                <>
+                  <Image
+                    src={`/assets/Footer/${item.name}.svg`}
+                    alt="item"
+                    width={20}
+                    height={20}
+                  />
+                  <Text>{item.text}</Text>
+                </>
+              )}
+            </Link>
+          </Content>
+        ))}
       </>
     </Wrapper>
   );
