@@ -1,15 +1,11 @@
 import styled from 'styled-components';
-import { BiHomeAlt2 } from 'react-icons/bi';
-import { FiSearch } from 'react-icons/fi';
-import { MdOutlineVideoLibrary } from 'react-icons/all';
-import { HiDownload } from 'react-icons/hi';
-import { BsList } from 'react-icons/bs';
+import Link from 'next/link';
+import {usePathname} from 'next/navigation';
+import Image from 'next/image';
 
 const Wrapper = styled.div`
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
-  flex-basis: 20%;
   align-items: center;
   position: fixed;
   bottom: 0;
@@ -20,46 +16,90 @@ const Wrapper = styled.div`
 
 const Content = styled.div`
   display: flex;
+  flex-basis: 20%;
   flex-direction: column;
   align-items: center;
+  text-align: center;
   cursor: pointer;
-  /*
-  :hover {
-    color: white;
-  }
-  */
 `;
 
-const Text = styled.div`
+const Text = styled.div<{ color?: string }>`
   font-size: 8.2px;
   font-weight: 500;
-  margin-top: 3px;
-  color: #8c8787;
+  margin-top: 1px;
+  color: ${(props) => props.color || "#878787"};
 `;
 
 export default function Footer() {
+  const pathname  = usePathname();
+  
+  const menuData = [
+    {
+      id:0,
+      name: 'Home',
+      link: '/home',
+      text: 'Home'
+    },
+    {
+      id:1,
+      name: 'Search',
+      link: '/search',
+      text: 'Search'
+    },
+    {
+      id:2,
+      name: 'Soon',
+      link: '',
+      text: 'Coming Soon'
+    },
+    {
+      id:3,
+      name: 'Downloads',
+      link: '',
+      text: 'Downloads'
+    },
+    {
+      id:4,
+      name: 'More',
+      link: '',
+      text: 'More'
+    }
+  ];
+
   return (
     <Wrapper>
-      <Content>
-        <BiHomeAlt2 size={'22px'} color="#8C8787" />
-        <Text>Home</Text>
-      </Content>
-      <Content>
-        <FiSearch size={'22px'} color="#8C8787" />
-        <Text>Search</Text>
-      </Content>
-      <Content>
-        <MdOutlineVideoLibrary size={'22px'} color="#8C8787" />
-        <Text>Coming Soon</Text>
-      </Content>
-      <Content>
-        <HiDownload size={'22px'} color="#8C8787" />
-        <Text>Downloads</Text>
-      </Content>
-      <Content>
-        <BsList size={'22px'} color="#8C8787" />
-        <Text>More</Text>
-      </Content>
+      <>
+      {menuData.map((item,idx) => (
+        <Content>
+          <Link href = {item.link} key={idx}>
+            {pathname === item.link ? (
+              <>
+              <Image
+              src={`/assets/Footer/selected${item.name}.svg`}
+              alt='item'
+              width={20}
+              height={20}
+              key={idx}
+              />
+              <Text color='white' key={idx}>
+                {item.text}</Text>
+              </>
+            ):(
+              <>
+              <Image
+              src={`/assets/Footer/${item.name}.svg`}
+              alt='item'
+              width={20}
+              height={20}
+              key={idx}
+              />
+              <Text>{item.text}</Text>
+              </> 
+            )}
+          </Link>
+        </Content>
+      ))}
+      </>
     </Wrapper>
   );
 }

@@ -2,6 +2,7 @@
 
 import { ITvShow } from '@/interface/interface';
 import styled from 'styled-components';
+import Link from 'next/link';
 
 type TvShowListProps = {
   title: string;
@@ -14,7 +15,8 @@ export default function TvShowList({ title, videos }: TvShowListProps) {
       <Title>{title}</Title>
       <VideoListBox>
         {videos &&
-          videos.map(video => (
+          videos!.map(video => (
+            <Link href={{pathname: `/detail/${video.id}`, query: {backdrop: video.backdrop_path, overview: video.overview}, }} >
             <ImgBox key={video.id}>
               <VideoImg
                 key={video.id}
@@ -22,6 +24,7 @@ export default function TvShowList({ title, videos }: TvShowListProps) {
                 alt="videoImg"
               />
             </ImgBox>
+            </Link>
           ))}
       </VideoListBox>
     </VideoListContainer>

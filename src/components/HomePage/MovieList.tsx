@@ -2,6 +2,7 @@
 
 import { IMovie } from '@/interface/interface';
 import styled from 'styled-components';
+import Link from 'next/link';
 
 type MovieListProps = {
   title: string;
@@ -15,7 +16,8 @@ export default function MovieList({ title, videos, isCircle }: MovieListProps) {
       <Title isCircle={isCircle}>{title}</Title>
       <VideoListBox isCircle={isCircle}>
         {videos &&
-          videos.map(video => (
+          videos!.map(video => (
+            <Link href={{pathname: `/detail/${video.id}`, query: {backdrop: video.backdrop_path, overview: video.overview}, }}>
             <ImgBox key={video.id} isCircle={isCircle}>
               <VideoImg
                 src={`https://image.tmdb.org/t/p/original${video.poster_path}`}
@@ -23,6 +25,7 @@ export default function MovieList({ title, videos, isCircle }: MovieListProps) {
                 isCircle={isCircle}
               />
             </ImgBox>
+            </Link>
           ))}
       </VideoListBox>
     </VideoListContainer>

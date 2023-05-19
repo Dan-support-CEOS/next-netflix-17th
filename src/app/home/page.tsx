@@ -14,16 +14,32 @@ import MovieList from '../../components/HomePage/MovieList';
 import TvShowList from '../../components/HomePage/TvShowList';
 import Footer from '../../components/Footer';
 import styled from 'styled-components';
+import Link from 'next/link';
 import getQueryClient from '../getQueryClient';
 
 const HomePageBox = styled.div`
   width: 375px;
+  padding-bottom: 48px;
+`;
+
+const Images = styled.div`
+  position: relative;
+`;
+
+const ImageGradient = styled.div`
+  height: 415px;
+  width: 375px;
+  background: linear-gradient(transparent 10%, black);
+  position:absolute;
+  top:0;
+  z-index:90;
 `;
 
 const Image = styled.img`
   object-fit: cover;
   height: 415px;
   width: 375px;
+  position: relative;
 `;
 
 export default function HomePage() {
@@ -48,19 +64,23 @@ export default function HomePage() {
     getTopRatedTvShows,
   );
 
+  if(nowPlayingMovies && nowPlayingMovies!){
+    const index = Math.floor(Math.random() * nowPlayingMovies.length);
+
   return (
     <HomePageBox>
       <Header />
-      {nowPlayingMovies && nowPlayingMovies! && (
+      <Images>
+         <Link href={{pathname: `/detail/${nowPlayingMovies[index].id}`, query: {backdrop: nowPlayingMovies[index].backdrop_path, overview: nowPlayingMovies[index].overview}, }} >
         <Image
           src={`https://image.tmdb.org/t/p/original${
-            nowPlayingMovies[
-              Math.floor(Math.random() * nowPlayingMovies.length)
-            ].poster_path
+            nowPlayingMovies[index].poster_path
           }`}
           alt={'randomImg'}
         />
-      )}
+        <ImageGradient/>
+        </Link>
+        </Images>
       <Bar />
 
       <MovieList title={'Previews'} videos={upcomingMovies} isCircle={true} />
@@ -82,6 +102,8 @@ export default function HomePage() {
   );
 }
 
+  }
+=======
 /*
 export async function HydratedHomePage() {
   const queryClient = getQueryClient();
