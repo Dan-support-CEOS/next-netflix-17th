@@ -31,7 +31,10 @@ export default function SearchPage() {
           value={searchText}
           onChange={e => setSearchText(e.target.value)}
         />
-        <img src={'/icons/delete.svg'} />
+        <DeleteBtn
+          src={'/icons/delete.svg'}
+          onClick={() => setSearchText('')}
+        />
       </SearchInputBox>
 
       <Title>Top Searches</Title>
@@ -96,4 +99,8 @@ const Title = styled.h2`
   font-size: 26.75px;
   font-weight: 700;
   margin: 21px 0;
+`;
+
+const DeleteBtn = styled.img`
+  cursor: pointer;
 `;

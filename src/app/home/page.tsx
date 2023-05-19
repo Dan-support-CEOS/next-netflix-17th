@@ -83,6 +83,8 @@ export default function HomePage() {
 }
 
 /*
+SSR 안먹힘.................
+
 export async function HydratedHomePage() {
   const queryClient = getQueryClient();
   await queryClient.prefetchQuery(['upcomingMovies'], getUpcomingMovies);
