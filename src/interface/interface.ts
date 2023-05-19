@@ -30,3 +30,12 @@ export interface ITvShow {
   name: string;
   original_name: string;
 }
+
+/*
+export interface IMoviePerPage {
+  page: number;
+  results: IMovie[];
+  total_pages: number;
+  total_results: number;
+}
+*/

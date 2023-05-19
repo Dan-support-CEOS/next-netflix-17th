@@ -14,7 +14,7 @@ export const getHorrorMovies = async () => {
     .then(res => res.data.results);
 };
 
-export const searchMovies = async (searchText: string) => {
+export const searchMovies = async (searchText: String) => {
   return httpClient
     .get('/search/movie', { params: { query: searchText } })
     .then(res => res.data.results);

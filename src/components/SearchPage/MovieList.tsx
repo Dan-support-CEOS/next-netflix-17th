@@ -4,14 +4,14 @@ import { IMovie } from '../../interface/interface';
 import styled from 'styled-components';
 
 type MovieListProps = {
-  videos: IMovie[] | undefined;
+  data: any;
 };
 
-export default function MovieList({ videos }: MovieListProps) {
+export default function MovieList({ data }: MovieListProps) {
   return (
     <ul>
-      {videos &&
-        videos.map(video => (
+      {data?.pages.map((page: any) =>
+        page.results.map((video: IMovie) => (
           <VideoBox key={video.id}>
             <VideoImg
               key={video.id}
@@ -23,7 +23,8 @@ export default function MovieList({ videos }: MovieListProps) {
               <PlayCircle src={'/icons/play-circle.svg'} />
             </RightBox>
           </VideoBox>
-        ))}
+        )),
+      )}
     </ul>
   );
 }
