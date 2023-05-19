@@ -25,6 +25,7 @@ export default function MovieList({ title, videos, isCircle }: MovieListProps) {
                   overview: video.overview,
                 },
               }}
+              key={video.id}
             >
               <ImgBox key={video.id} isCircle={isCircle}>
                 <VideoImg

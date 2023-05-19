@@ -16,14 +16,23 @@ export default function TvShowList({ title, videos }: TvShowListProps) {
       <VideoListBox>
         {videos &&
           videos!.map(video => (
-            <Link href={{pathname: `/detail/${video.id}`, query: {backdrop: video.backdrop_path, overview: video.overview}, }} >
-            <ImgBox key={video.id}>
-              <VideoImg
-                key={video.id}
-                src={`https://image.tmdb.org/t/p/original${video.poster_path}`}
-                alt="videoImg"
-              />
-            </ImgBox>
+            <Link
+              href={{
+                pathname: `/detail/${video.id}`,
+                query: {
+                  backdrop: video.backdrop_path,
+                  overview: video.overview,
+                },
+              }}
+              key={video.id}
+            >
+              <ImgBox key={video.id}>
+                <VideoImg
+                  key={video.id}
+                  src={`https://image.tmdb.org/t/p/original${video.poster_path}`}
+                  alt="videoImg"
+                />
+              </ImgBox>
             </Link>
           ))}
       </VideoListBox>

@@ -12,7 +12,7 @@ export default function SearchPage() {
   return (
     <SearchPageBox>
       <SearchInputBox>
-        <img src={'/icons/search.svg'} />
+        <img src={'/icons/search.svg'} alt="img" />
         <SearchInput
           type="text"
           placeholder="Search for a show, movie, e.t.c."
