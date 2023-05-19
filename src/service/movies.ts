@@ -13,9 +13,3 @@ export const getHorrorMovies = async () => {
     .get('/discover/movie', { params: { with_genres: 27 } })
     .then(res => res.data.results);
 };
-
-export const searchMovies = async (searchText: String) => {
-  return httpClient
-    .get('/search/movie', { params: { query: searchText } })
-    .then(res => res.data.results);
-};

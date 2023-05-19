@@ -1,62 +1,13 @@
 'use client';
 
 import { useState } from 'react';
-import { useQuery, useInfiniteQuery } from '@tanstack/react-query';
-import InfiniteScroll from 'react-infinite-scroller';
-import { searchMovies } from '../../service/movies';
-import { IMovie } from '@/interface/interface';
-import MovieList from '@/components/SearchPage/MovieList';
+import DafaultMovieList from '@/components/SearchPage/DefaultMovieList';
+import SearchMovieList from '@/components/SearchPage/SearchMovieList';
 import Footer from '../../components/Footer';
 import styled from 'styled-components';
-import httpClient from '@/service/httpClient';
 
 export default function SearchPage() {
   const [searchText, setSearchText] = useState('');
-
-  /*
-  const { data: searchedMovies } = useQuery<IMovie[]>(['searchedMovies'], () =>
-    searchMovies(searchText),
-  );
-  */
-
-  //디폴트 Search 영화 목록
-  const getNowPlayingMovies = async (page: number) => {
-    return httpClient
-      .get('/movie/now_playing', { params: { page: page } })
-      .then(res => res.data);
-  };
-
-  const { data, fetchNextPage, hasNextPage } = useInfiniteQuery(
-    ['page'],
-    ({ pageParam = 1 }) => getNowPlayingMovies(pageParam),
-    {
-      getNextPageParam: (lastPage, allPosts) => {
-        return lastPage.page !== allPosts[0].total_pages
-          ? lastPage.page + 1
-          : undefined;
-      },
-    },
-  );
-
-  /*
-  const searchMovies = async (searchText: string, page: number) => {
-    return httpClient
-      .get('/search/movie', { params: { query: searchText, page: page } })
-      .then(res => res.data);
-  };
-
-  const { searchedMovies, fetchNextPage, hasNextPage } = useInfiniteQuery<
-    IMoviePerPage,
-    FetchNextPageOptions,
-    boolean
-  >(['page'], ({ pageParam = 1 }) => searchMovies(searchText, pageParam), {
-    getNextPageParam: (lastPage, allPosts) => {
-      return lastPage.page !== allPosts[0].total_pages
-        ? lastPage.page + 1
-        : undefined;,
-    },
-  });
-  */
 
   return (
     <SearchPageBox>
@@ -75,10 +26,11 @@ export default function SearchPage() {
       </SearchInputBox>
 
       <Title>Top Searches</Title>
-      <InfiniteScroll hasMore={hasNextPage} loadMore={() => fetchNextPage()}>
-        <MovieList data={data} />
-      </InfiniteScroll>
-
+      {!searchText ? (
+        <DafaultMovieList />
+      ) : (
+        <SearchMovieList searchText={searchText} />
+      )}
       <Footer />
     </SearchPageBox>
   );
@@ -139,13 +91,3 @@ const Title = styled.h2`
 const DeleteBtn = styled.img`
   cursor: pointer;
 `;
-
-/*
-      {!searchText ? (
-        <InfiniteScroll hasMore={hasNextPage} loadMore={() => fetchNextPage()}>
-          <MovieList videos={nowPlayingMovies.results} />
-        </InfiniteScroll>
-      ) : (
-        <MovieList videos={searchedMovies} />
-      )}
-      */
