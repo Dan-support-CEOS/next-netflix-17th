@@ -9,6 +9,7 @@ interface ScrollInterface {
 const Wrapper = styled.div<ScrollInterface>`
   position: absolute;
   position: fixed;
+  z-index: 100;
   display: flex;
   width: 375px;
   height: 80px;

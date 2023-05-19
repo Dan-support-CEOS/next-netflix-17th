@@ -2,6 +2,7 @@
 
 import { IMovie } from '../../interface/interface';
 import styled from 'styled-components';
+import Link from 'next/link';
 
 type MovieListProps = {
   data: any;
@@ -20,7 +21,9 @@ export default function MovieList({ data }: MovieListProps) {
             />
             <RightBox>
               <VideoTitle>{video.title}</VideoTitle>
-              <PlayCircle src={'/icons/play-circle.svg'} />
+              <Link href={{pathname: `/detail/${video.id}`, query: {backdrop: video.backdrop_path, overview: video.overview},}}>
+                <PlayCircle src={'/icons/play-circle.svg'} />
+              </Link>
             </RightBox>
           </VideoBox>
         )),
