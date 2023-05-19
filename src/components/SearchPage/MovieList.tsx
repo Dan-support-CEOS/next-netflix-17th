@@ -2,6 +2,7 @@
 
 import { IMovie } from '../../interface/interface';
 import styled from 'styled-components';
+import Link from 'next/link';
 import { MdOutlinePlayCircle } from 'react-icons/all';
 
 type MovieListProps = {
@@ -21,7 +22,9 @@ export default function MovieList({ videos }: MovieListProps) {
             />
             <RightBox>
               <VideoTitle>{video.title}</VideoTitle>
+              <Link href={{pathname: `/detail/${video.id}`, query: {backdrop: video.backdrop_path, overview: video.overview},}}>
               <img src={'/icons/play-circle.svg'} />
+              </Link>
             </RightBox>
           </VideoBox>
         ))}
@@ -47,6 +50,7 @@ const VideoImg = styled.img`
 const RightBox = styled.div`
   display: flex;
   justify-content: space-between;
+  align-items: center;
   width: 100%;
   padding: 0 14px;
 `;

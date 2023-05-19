@@ -54,7 +54,7 @@ margin-bottom: 60px;
 export default function DetailPage(){
   const params = useSearchParams();
   const backdropPath = params.get('backdrop');
-  const overviewW = params.get('overview');
+  const overview = params.get('overview');
 
     return(
         <DetailPageBox>
@@ -67,7 +67,7 @@ export default function DetailPage(){
               Previews
             </Text>
             <SubText>
-              {overviewW}
+              {overview}
             </SubText>
             <Footer/>
         </DetailPageBox>
