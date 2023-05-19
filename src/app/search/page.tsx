@@ -7,6 +7,7 @@ import { IMovie } from '@/interface/interface';
 import MovieList from '@/components/SearchPage/MovieList';
 import Footer from '../../components/Footer';
 import styled from 'styled-components';
+import Image from 'next/image';
 
 export default function SearchPage() {
   const [searchText, setSearchText] = useState('');
@@ -31,7 +32,12 @@ export default function SearchPage() {
           value={searchText}
           onChange={e => setSearchText(e.target.value)}
         />
-        <img src={'/icons/delete.svg'} />
+        <Image
+              src={'/icons/delete.svg'}
+              alt='delete'
+              width={23}
+              height={23}
+              />
       </SearchInputBox>
 
       <Title>Top Searches</Title>
