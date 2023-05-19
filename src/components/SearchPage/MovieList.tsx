@@ -3,17 +3,16 @@
 import { IMovie } from '../../interface/interface';
 import styled from 'styled-components';
 import Link from 'next/link';
-import { MdOutlinePlayCircle } from 'react-icons/all';
 
 type MovieListProps = {
-  videos: IMovie[] | undefined;
+  data: any;
 };
 
-export default function MovieList({ videos }: MovieListProps) {
+export default function MovieList({ data }: MovieListProps) {
   return (
     <ul>
-      {videos &&
-        videos.map(video => (
+      {data?.pages.map((page: any) =>
+        page.results.map((video: IMovie) => (
           <VideoBox key={video.id}>
             <VideoImg
               key={video.id}
@@ -23,11 +22,12 @@ export default function MovieList({ videos }: MovieListProps) {
             <RightBox>
               <VideoTitle>{video.title}</VideoTitle>
               <Link href={{pathname: `/detail/${video.id}`, query: {backdrop: video.backdrop_path, overview: video.overview},}}>
-              <img src={'/icons/play-circle.svg'} />
+                <PlayCircle src={'/icons/play-circle.svg'} />
               </Link>
             </RightBox>
           </VideoBox>
-        ))}
+        )),
+      )}
     </ul>
   );
 }
@@ -61,8 +61,10 @@ const VideoTitle = styled.h2`
   font-weight: 400;
 `;
 
-const playCircle = styled.div`
+const PlayCircle = styled.img`
   width: 23.33px;
   height: 23.33px;
   color: white;
+
+  cursor: pointer;
 `;

@@ -1,26 +1,14 @@
 'use client';
 
 import { useState } from 'react';
-import { useQuery } from '@tanstack/react-query';
-import { getNowPlayingMovies, searchMovies } from '../../service/movies';
-import { IMovie } from '@/interface/interface';
-import MovieList from '@/components/SearchPage/MovieList';
+import DafaultMovieList from '@/components/SearchPage/DefaultMovieList';
+import SearchMovieList from '@/components/SearchPage/SearchMovieList';
 import Footer from '../../components/Footer';
 import styled from 'styled-components';
 import Image from 'next/image';
 
 export default function SearchPage() {
   const [searchText, setSearchText] = useState('');
-
-  const { data: nowPlayingMovies } = useQuery<IMovie[]>(
-    ['nowPlayingMovies'],
-    getNowPlayingMovies,
-  );
-
-  const { data: searchedMovies } = useQuery<IMovie[]>(
-    ['searchedMovies', searchText],
-    () => searchMovies(searchText),
-  );
 
   return (
     <SearchPageBox>
@@ -32,21 +20,18 @@ export default function SearchPage() {
           value={searchText}
           onChange={e => setSearchText(e.target.value)}
         />
-        <Image
-              src={'/icons/delete.svg'}
-              alt='delete'
-              width={23}
-              height={23}
-              />
+        <DeleteBtn
+          src={'/icons/delete.svg'}
+          onClick={() => setSearchText('')}
+        />
       </SearchInputBox>
 
       <Title>Top Searches</Title>
       {!searchText ? (
-        <MovieList videos={nowPlayingMovies} />
+        <DafaultMovieList />
       ) : (
-        <MovieList videos={searchedMovies} />
+        <SearchMovieList searchText={searchText} />
       )}
-
       <Footer />
     </SearchPageBox>
   );
@@ -102,4 +87,8 @@ const Title = styled.h2`
   font-size: 26.75px;
   font-weight: 700;
   margin: 21px 0;
+`;
+
+const DeleteBtn = styled.img`
+  cursor: pointer;
 `;
