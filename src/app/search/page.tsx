@@ -5,6 +5,7 @@ import DafaultMovieList from '@/components/SearchPage/DefaultMovieList';
 import SearchMovieList from '@/components/SearchPage/SearchMovieList';
 import Footer from '../../components/Footer';
 import styled from 'styled-components';
+import Image from 'next/image';
 
 export default function SearchPage() {
   const [searchText, setSearchText] = useState('');
